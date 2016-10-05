@@ -158,11 +158,11 @@ class BackFromTheKlondikeGame:
                 # can exactly exit from the board, thus winning the game
                 if Board.board[new_r - sign_r][new_c - sign_c] != 0:
                     h = self.heuristic
-                    new_state = BackFromTheKlondikeState(new_r, new_c, state, h)
+                    new_s = BackFromTheKlondikeState(new_r, new_c, state, h)
                     # We also check if the value of that state is not -1
                     # to avoid adding invalid states
-                    if new_state.isAdmissible():
-                        out.add(new_state)
+                    if new_s.isAdmissible():
+                        out.add(new_s)
         return out
 
     def get_state(self):
@@ -224,7 +224,7 @@ if __name__ == "__main__":
     solution = search(game, state0)
     if solution:
         print("Solution found!")
-        for state in solution:
-            print("({:2d}, {:2d}) -> {}".format(state.row, state.col, state.getValue()))
+        for s in solution:
+            print("({:2d}, {:2d}) -> {}".format(s.row, s.col, s.getValue()))
     else:
         print("No solution found")
